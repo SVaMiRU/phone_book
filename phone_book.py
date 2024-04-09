@@ -1,5 +1,3 @@
-# -*- coding: cp1251 -*-
-
 import os
 import sys
 
@@ -8,7 +6,7 @@ def add_new_user(name: str, phone: str, filename: str):
     Äîáàâëåíèå íîâîãî ïîëüçîâàòåëÿ.
     """
     new_line = '\n' if read_all(filename) != "" else ''
-    with open(filename, "a") as file:
+    with open(filename, "a", encoding = "utf-8") as file:
         file.write(f"{new_line}{name} - {phone}")
 
 
@@ -16,7 +14,7 @@ def read_all(filename: str) -> str:
     """
     Âîçâðàùàåò âñå ñîäåðæèìîå òåëåôîííîé êíèãè.
     """
-    with open("numbers.txt", "r") as file:
+    with open("numbers.txt", "r", encoding = "utf-8") as file:
         return file.read()
 
 
@@ -24,7 +22,7 @@ def search_user(filename: str, data: str) -> str:
     """
     Ïîèñê çàïèñè ïî êðèòåðèþ data.
     """
-    with open(filename, "r") as file:
+    with open(filename, "r", encoding = "utf-8") as file:
         list_1 = file.read().split("\n")
     result = []
     result = [i for i in list_1 if data in i]
@@ -41,7 +39,7 @@ def transfer_data(source: str, dest: str, num_row: int):
     dest: str - èìÿ ôàéëà êóäà ïåðåíîñèì
     num_row: int - íîìåð ïåðåíîñèìîé ñòðîêè
     """
-    with open(source, 'r') as file:
+    with open(source, 'r', encoding = "utf-8") as file:
         lines = file.readlines()
 
     if num_row < 1 or num_row > len(lines):
@@ -50,7 +48,7 @@ def transfer_data(source: str, dest: str, num_row: int):
 
     data_to_transfer = lines[num_row - 1]
 
-    with open(dest, 'a') as dest_file:
+    with open(dest, 'a', encoding = "utf-8") as dest_file:
         dest_file.write(data_to_transfer)
 
     print(f"Ñòðîêà {num_row} áûëà óñïåøíî ñêîïèðîâàíà èç ôàéëà {source} â ôàéë {dest}")
