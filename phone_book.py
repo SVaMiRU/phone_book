@@ -1,11 +1,11 @@
-# -*- coding: cp1251 -*-
+# -*- coding: utf-8 -*-
 
 import os
 import sys
 
 def add_new_user(name: str, phone: str, filename: str):
     """
-    Добавление нового пользователя.
+    Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї.
     """
     new_line = '\n' if read_all(filename) != "" else ''
     with open(filename, "a") as file:
@@ -14,7 +14,7 @@ def add_new_user(name: str, phone: str, filename: str):
 
 def read_all(filename: str) -> str:
     """
-    Возвращает все содержимое телефонной книги.
+    Г‚Г®Г§ГўГ°Г Г№Г ГҐГІ ГўГ±ГҐ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГҐ ГІГҐГ«ГҐГґГ®Г­Г­Г®Г© ГЄГ­ГЁГЈГЁ.
     """
     with open("numbers.txt", "r") as file:
         return file.read()
@@ -22,30 +22,30 @@ def read_all(filename: str) -> str:
 
 def search_user(filename: str, data: str) -> str:
     """
-    Поиск записи по критерию data.
+    ГЏГ®ГЁГ±ГЄ Г§Г ГЇГЁГ±ГЁ ГЇГ® ГЄГ°ГЁГІГҐГ°ГЁГѕ data.
     """
     with open(filename, "r") as file:
         list_1 = file.read().split("\n")
     result = []
     result = [i for i in list_1 if data in i]
     if not result:
-        return "По указанному значению совпадений не найдено"
+        return "ГЏГ® ГіГЄГ Г§Г Г­Г­Г®Г¬Гі Г§Г­Г Г·ГҐГ­ГЁГѕ Г±Г®ГўГЇГ Г¤ГҐГ­ГЁГ© Г­ГҐ Г­Г Г©Г¤ГҐГ­Г®"
     return "\n".join(result)
 
 
 def transfer_data(source: str, dest: str, num_row: int):
     """
-    функция для переноса строки из одного файла
-    в другой
-    source: str - имя исходного файла
-    dest: str - имя файла куда переносим
-    num_row: int - номер переносимой строки
+    ГґГіГ­ГЄГ¶ГЁГї Г¤Г«Гї ГЇГҐГ°ГҐГ­Г®Г±Г  Г±ГІГ°Г®ГЄГЁ ГЁГ§ Г®Г¤Г­Г®ГЈГ® ГґГ Г©Г«Г 
+    Гў Г¤Г°ГіГЈГ®Г©
+    source: str - ГЁГ¬Гї ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® ГґГ Г©Г«Г 
+    dest: str - ГЁГ¬Гї ГґГ Г©Г«Г  ГЄГіГ¤Г  ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬
+    num_row: int - Г­Г®Г¬ГҐГ° ГЇГҐГ°ГҐГ­Г®Г±ГЁГ¬Г®Г© Г±ГІГ°Г®ГЄГЁ
     """
     with open(source, 'r') as file:
         lines = file.readlines()
 
     if num_row < 1 or num_row > len(lines):
-        print("Неверный номер строки для переноса")
+        print("ГЌГҐГўГҐГ°Г­Г»Г© Г­Г®Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ Г¤Г«Гї ГЇГҐГ°ГҐГ­Г®Г±Г ")
         return
 
     data_to_transfer = lines[num_row - 1]
@@ -53,20 +53,20 @@ def transfer_data(source: str, dest: str, num_row: int):
     with open(dest, 'a') as dest_file:
         dest_file.write(data_to_transfer)
 
-    print(f"Строка {num_row} была успешно скопирована из файла {source} в файл {dest}")
+    print(f"Г‘ГІГ°Г®ГЄГ  {num_row} ГЎГ»Г«Г  ГіГ±ГЇГҐГёГ­Г® Г±ГЄГ®ГЇГЁГ°Г®ГўГ Г­Г  ГЁГ§ ГґГ Г©Г«Г  {source} Гў ГґГ Г©Г« {dest}")
 
 INFO_STRING = """
-Выберите режим работы:
-1 - вывести все данные
-2 - добавление нового пользователя
-3 - поиск
-4 - перенос записи в другой файл
+Г‚Г»ГЎГҐГ°ГЁГІГҐ Г°ГҐГ¦ГЁГ¬ Г°Г ГЎГ®ГІГ»:
+1 - ГўГ»ГўГҐГ±ГІГЁ ГўГ±ГҐ Г¤Г Г­Г­Г»ГҐ
+2 - Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї
+3 - ГЇГ®ГЁГ±ГЄ
+4 - ГЇГҐГ°ГҐГ­Г®Г± Г§Г ГЇГЁГ±ГЁ Гў Г¤Г°ГіГЈГ®Г© ГґГ Г©Г«
 """
 
 file = "numbers.txt"
 
 if file not in os.listdir():
-    print("указанное имя файла отсутствует")
+    print("ГіГЄГ Г§Г Г­Г­Г®ГҐ ГЁГ¬Гї ГґГ Г©Г«Г  Г®ГІГ±ГіГІГ±ГІГўГіГҐГІ")
     sys.exit()
 
 while True:
@@ -74,15 +74,15 @@ while True:
     if mode == 1:
         print(read_all(file))      
     elif mode == 2:
-        name = input("Введите Ваше имя:")
-        phone = input("Введите номер телефона:")
+        name = input("Г‚ГўГҐГ¤ГЁГІГҐ Г‚Г ГёГҐ ГЁГ¬Гї:")
+        phone = input("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г®Г¬ГҐГ° ГІГҐГ«ГҐГґГ®Г­Г :")
         add_new_user(name, phone, file)
     elif mode == 3:
-        data = input("Введите значение:")
+        data = input("Г‚ГўГҐГ¤ГЁГІГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ:")
         print(search_user(file, data))
     elif mode == 4:
-        # Тут нужно вызвать функцию с аргументами
-        source = input("Введите имя исходного файла: ")
-        dest = input("Введите имя файла, куда нужно скопировать строку: ")
-        num_row = int(input("Введите номер строки для переноса: "))
+        # Г’ГіГІ Г­ГіГ¦Г­Г® ГўГ»Г§ГўГ ГІГј ГґГіГ­ГЄГ¶ГЁГѕ Г± Г Г°ГЈГіГ¬ГҐГ­ГІГ Г¬ГЁ
+        source = input("Г‚ГўГҐГ¤ГЁГІГҐ ГЁГ¬Гї ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® ГґГ Г©Г«Г : ")
+        dest = input("Г‚ГўГҐГ¤ГЁГІГҐ ГЁГ¬Гї ГґГ Г©Г«Г , ГЄГіГ¤Г  Г­ГіГ¦Г­Г® Г±ГЄГ®ГЇГЁГ°Г®ГўГ ГІГј Г±ГІГ°Г®ГЄГі: ")
+        num_row = int(input("Г‚ГўГҐГ¤ГЁГІГҐ Г­Г®Г¬ГҐГ° Г±ГІГ°Г®ГЄГЁ Г¤Г«Гї ГЇГҐГ°ГҐГ­Г®Г±Г : "))
         transfer_data(source, dest, num_row)
